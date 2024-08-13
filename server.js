@@ -1,12 +1,15 @@
 import express from "express";
-import cors from cors;
+import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import connectDB from "./database.js";
+import router from './src/routes/index.js';
 
 
 
 dotenv.config();
+
+const app = express();
 
 app.use(cors({origin: '*'}));
 
@@ -21,7 +24,7 @@ const startServer = async () => {
     const PORT = process.env.PORT || 6000;
     connectDB();
     try {
-        server.listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log(`APP IS RUNNING ON PORT: ${PORT}`);
         });
     } catch (error) {
